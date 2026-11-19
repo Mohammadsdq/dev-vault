@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,13 @@
   <title>DevVault | فضای کار توسعه‌دهنده</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Style Css -->
   <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./src/index.js"></script>
 </head>
+
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
@@ -33,10 +37,14 @@
       <div class="sidebar-divider"></div>
       <div class="workspace-label">مجموعه‌ها</div>
       <div class="collection-list" id="collectionList">
-        <button class="collection-item" type="button" data-category="all"><i class="collection-dot all"></i> همه APIها</button>
-        <button class="collection-item" type="button" data-category="development"><i class="collection-dot purple"></i> توسعه</button>
-        <button class="collection-item" type="button" data-category="production"><i class="collection-dot green"></i> عملیاتی</button>
-        <button class="collection-item" type="button" data-category="testing"><i class="collection-dot orange"></i> تست</button>
+        <button class="collection-item" type="button" data-category="all"><i class="collection-dot all"></i> همه
+          APIها</button>
+        <button class="collection-item" type="button" data-category="development"><i class="collection-dot purple"></i>
+          توسعه</button>
+        <button class="collection-item" type="button" data-category="production"><i class="collection-dot green"></i>
+          عملیاتی</button>
+        <button class="collection-item" type="button" data-category="testing"><i class="collection-dot orange"></i>
+          تست</button>
       </div>
 
       <div class="sidebar-bottom">
@@ -91,7 +99,10 @@
         <section class="workspace-grid">
           <div class="panel api-panel">
             <div class="panel-heading">
-              <div><h2>APIهای ذخیره‌شده</h2><p>لیست درخواست‌های موردعلاقه‌ات</p></div>
+              <div>
+                <h2>APIهای ذخیره‌شده</h2>
+                <p>لیست درخواست‌های موردعلاقه‌ات</p>
+              </div>
               <label class="search-box">
                 <span>⌕</span>
                 <input id="apiSearch" type="search" placeholder="جست‌وجوی API..." aria-label="جست‌وجوی API">
@@ -105,7 +116,11 @@
                 <button class="filter-tab" type="button" data-filter="PUT">PUT</button>
                 <button class="filter-tab" type="button" data-filter="DELETE">DELETE</button>
               </div>
-              <select id="apiSort" class="sort-select" aria-label="مرتب‌سازی"><option value="newest">جدیدترین</option><option value="oldest">قدیمی‌ترین</option><option value="name">نام API</option></select>
+              <select id="apiSort" class="sort-select" aria-label="مرتب‌سازی">
+                <option value="newest">جدیدترین</option>
+                <option value="oldest">قدیمی‌ترین</option>
+                <option value="name">نام API</option>
+              </select>
             </div>
 
             <div class="api-list" id="apiList">
@@ -119,15 +134,26 @@
           </div>
 
           <aside class="panel quick-panel">
-            <div class="panel-heading compact"><div><h2>درخواست سریع</h2><p>بدون ذخیره‌سازی، یک درخواست ارسال کن</p></div><span class="quick-icon">↗</span></div>
+            <div class="panel-heading compact">
+              <div>
+                <h2>درخواست سریع</h2>
+                <p>بدون ذخیره‌سازی، یک درخواست ارسال کن</p>
+              </div><span class="quick-icon">↗</span>
+            </div>
             <form id="requestForm" class="request-form">
               <label for="requestMethod">متد درخواست</label>
               <select id="requestMethod" name="method">
-                <option value="GET">GET</option><option value="POST">POST</option><option value="PUT">PUT</option><option value="PATCH">PATCH</option><option value="DELETE">DELETE</option>
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
               </select>
 
               <label for="requestUrl">آدرس URL</label>
-              <div class="url-input-wrap"><input id="requestUrl" name="url" type="url" placeholder="https://api.example.com/users" autocomplete="url"><button class="send-btn" id="sendRequestBtn" type="submit" aria-label="ارسال درخواست">➤</button></div>
+              <div class="url-input-wrap"><input id="requestUrl" name="url" type="url"
+                  placeholder="https://api.example.com/users" autocomplete="url"><button class="send-btn"
+                  id="sendRequestBtn" type="submit" aria-label="ارسال درخواست">➤</button></div>
 
               <div class="request-options">
                 <span>Headers و Body</span><span class="soon-tag">در فاز بعد</span>
@@ -147,15 +173,24 @@
 
         <section class="panel history-preview">
           <div class="panel-heading compact">
-            <div><h2>آخرین درخواست‌ها</h2><p>مروری سریع بر فعالیت‌های اخیر</p></div>
+            <div>
+              <h2>آخرین درخواست‌ها</h2>
+              <p>مروری سریع بر فعالیت‌های اخیر</p>
+            </div>
             <button class="text-btn" type="button" data-view="history">مشاهده تاریخچه ←</button>
           </div>
           <div class="history-empty" id="historyPreview"><span>◷</span> هنوز درخواستی ارسال نشده است.</div>
         </section>
 
-        <footer class="footer"><span>DevVault <b>•</b> فضای کاری توسعه‌دهنده</span><span>ساخته‌شده برای تمرین JavaScript</span></footer>
+        <footer class="footer"><span>DevVault <b>•</b> فضای کاری توسعه‌دهنده</span><span>ساخته‌شده برای تمرین
+            JavaScript</span></footer>
       </section>
     </main>
   </div>
+
+
+  <!-- Main index.js -->
+  <script type="module" src="./src/index.js"></script>
 </body>
+
 </html>

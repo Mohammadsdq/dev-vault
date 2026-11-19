@@ -1,2 +1,6 @@
-// این فایل محل اتصال ماژول‌های اصلی برنامه خواهد بود.
-// فعلاً عمداً خالی است تا پیاده‌سازی را خودت شروع کنی.
+import {
+    getAll,
+    getById,
+    getByCategory,
+    create
+} from "../services/apiService.js";
