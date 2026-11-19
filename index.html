@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="DevVault - ابزار مدیریت API و درخواست‌های HTTP">
+  <title>DevVault | فضای کار توسعه‌دهنده</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./src/index.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="DevVault home">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span><strong>DevVault</strong><small>Developer workspace</small></span>
+      </a>
+
+      <div class="workspace-label">فضای کاری</div>
+      <nav class="main-nav" aria-label="منوی اصلی">
+        <button class="nav-item active" type="button" data-view="apis">
+          <span class="nav-icon">▦</span><span>مجموعه APIها</span><span class="nav-count" id="apiCount">۰</span>
+        </button>
+        <button class="nav-item" type="button" data-view="history">
+          <span class="nav-icon">◷</span><span>تاریخچه درخواست‌ها</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="workspace-label">مجموعه‌ها</div>
+      <div class="collection-list" id="collectionList">
+        <button class="collection-item" type="button" data-category="all"><i class="collection-dot all"></i> همه APIها</button>
+        <button class="collection-item" type="button" data-category="development"><i class="collection-dot purple"></i> توسعه</button>
+        <button class="collection-item" type="button" data-category="production"><i class="collection-dot green"></i> عملیاتی</button>
+        <button class="collection-item" type="button" data-category="testing"><i class="collection-dot orange"></i> تست</button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="tip-card">
+          <span class="tip-icon">✦</span>
+          <strong>فضای مخصوص توسعه‌دهنده‌ها</strong>
+          <p>درخواست‌ها و APIهای خودت را یک‌جا مدیریت کن.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">D</div>
+          <div><strong>Developer</strong><small>فضای شخصی</small></div>
+          <span class="profile-more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" type="button" aria-label="باز کردن منو">☰</button>
+        <div class="breadcrumbs"><span>فضای کاری</span><b>/</b><strong id="pageTitle">مجموعه APIها</strong></div>
+        <div class="topbar-actions">
+          <span class="status-indicator"><i></i> فضای محلی</span>
+          <button class="icon-btn" type="button" aria-label="راهنما">?</button>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">API WORKSPACE</p>
+            <h1>مجموعه APIها</h1>
+            <p class="page-description">درخواست‌های API خودت را بساز، سازمان‌دهی کن و اجرا کن.</p>
+          </div>
+          <button class="primary-btn" id="newApiBtn" type="button"><span>＋</span> API جدید</button>
+        </div>
+
+        <section class="stats-grid" aria-label="آمار">
+          <article class="stat-card">
+            <div class="stat-top"><span>کل APIها</span><span class="stat-icon violet">▦</span></div>
+            <strong id="totalApis">۰</strong><small>در فضای کاری شما</small>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>درخواست‌های امروز</span><span class="stat-icon blue">↗</span></div>
+            <strong id="todayRequests">۰</strong><small>درخواست ثبت‌شده</small>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>درخواست موفق</span><span class="stat-icon green">✓</span></div>
+            <strong id="successRate">—</strong><small>نرخ موفقیت درخواست‌ها</small>
+          </article>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel api-panel">
+            <div class="panel-heading">
+              <div><h2>APIهای ذخیره‌شده</h2><p>لیست درخواست‌های موردعلاقه‌ات</p></div>
+              <label class="search-box">
+                <span>⌕</span>
+                <input id="apiSearch" type="search" placeholder="جست‌وجوی API..." aria-label="جست‌وجوی API">
+              </label>
+            </div>
+            <div class="filter-row">
+              <div class="filter-tabs" role="group" aria-label="فیلتر APIها">
+                <button class="filter-tab active" type="button" data-filter="all">همه</button>
+                <button class="filter-tab" type="button" data-filter="GET">GET</button>
+                <button class="filter-tab" type="button" data-filter="POST">POST</button>
+                <button class="filter-tab" type="button" data-filter="PUT">PUT</button>
+                <button class="filter-tab" type="button" data-filter="DELETE">DELETE</button>
+              </div>
+              <select id="apiSort" class="sort-select" aria-label="مرتب‌سازی"><option value="newest">جدیدترین</option><option value="oldest">قدیمی‌ترین</option><option value="name">نام API</option></select>
+            </div>
+
+            <div class="api-list" id="apiList">
+              <div class="empty-state" id="apiEmptyState">
+                <div class="empty-illustration">⌘</div>
+                <h3>هنوز APIای ذخیره نکردی</h3>
+                <p>اولین درخواستت را بساز تا در این قسمت نمایش داده شود.</p>
+                <button class="secondary-btn" type="button" id="emptyCreateBtn">＋ ساخت API جدید</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="panel quick-panel">
+            <div class="panel-heading compact"><div><h2>درخواست سریع</h2><p>بدون ذخیره‌سازی، یک درخواست ارسال کن</p></div><span class="quick-icon">↗</span></div>
+            <form id="requestForm" class="request-form">
+              <label for="requestMethod">متد درخواست</label>
+              <select id="requestMethod" name="method">
+                <option value="GET">GET</option><option value="POST">POST</option><option value="PUT">PUT</option><option value="PATCH">PATCH</option><option value="DELETE">DELETE</option>
+              </select>
+
+              <label for="requestUrl">آدرس URL</label>
+              <div class="url-input-wrap"><input id="requestUrl" name="url" type="url" placeholder="https://api.example.com/users" autocomplete="url"><button class="send-btn" id="sendRequestBtn" type="submit" aria-label="ارسال درخواست">➤</button></div>
+
+              <div class="request-options">
+                <span>Headers و Body</span><span class="soon-tag">در فاز بعد</span>
+              </div>
+              <div class="disabled-fields">
+                <div><span>Headers</span><b>＋</b></div>
+                <div><span>JSON Body</span><b>{ }</b></div>
+              </div>
+            </form>
+            <div class="response-placeholder" id="responsePanel">
+              <span class="response-icon">{ }</span>
+              <strong>پاسخ درخواست اینجا نمایش داده می‌شود</strong>
+              <p>یک URL وارد کن و دکمه ارسال را بزن.</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="panel history-preview">
+          <div class="panel-heading compact">
+            <div><h2>آخرین درخواست‌ها</h2><p>مروری سریع بر فعالیت‌های اخیر</p></div>
+            <button class="text-btn" type="button" data-view="history">مشاهده تاریخچه ←</button>
+          </div>
+          <div class="history-empty" id="historyPreview"><span>◷</span> هنوز درخواستی ارسال نشده است.</div>
+        </section>
+
+        <footer class="footer"><span>DevVault <b>•</b> فضای کاری توسعه‌دهنده</span><span>ساخته‌شده برای تمرین JavaScript</span></footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
