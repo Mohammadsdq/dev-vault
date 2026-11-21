@@ -2,5 +2,6 @@ import {
     getAll,
     getById,
     getByCategory,
-    create
+    create,
+    update
 } from "../services/apiService.js";

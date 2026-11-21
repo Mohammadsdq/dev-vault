@@ -26,3 +26,23 @@ export function create(apiInfo) {
 
     return newApi;
 };
+
+export function update(id, updatedInfo) {
+    const existingApi = apiData.find(api => api.id === id);
+
+    if (!existingApi) return undefined;
+
+    const updatedApi = {
+        ...existingApi,
+        ...updatedInfo,
+        id: existingApi.id,
+        createdAt: existingApi.createdAt,
+        updatedAt: new Date().toISOString()
+    };
+
+    const apiIndex = apiData.findIndex(api => api.id === id);
+
+    apiData.splice(apiIndex, 1, updatedApi);
+
+    return updatedApi;
+}
