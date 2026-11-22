@@ -41,8 +41,38 @@ export function update(id, updatedInfo) {
     };
 
     const apiIndex = apiData.findIndex(api => api.id === id);
-
     apiData.splice(apiIndex, 1, updatedApi);
 
     return updatedApi;
 }
+
+export function remove(id) {
+    const existingApi = apiData.find(api => api.id === id);
+
+    if (!existingApi) return undefined;
+
+    const apiIndex = apiData.findIndex(api => api.id === id);
+    const deletedApiData = apiData[apiIndex];
+
+    apiData.splice(apiIndex, 1)
+
+    return deletedApiData;
+};
+
+export function search(keyword) {
+    if (typeof keyword !== "string" || !keyword.trim()) {
+        return [];
+    };
+
+    const normalizedKeyword = keyword.toLowerCase().trim();
+    return apiData.filter(api => {
+        const normalizedName = api.name.toLowerCase().trim();
+        return normalizedName.includes(normalizedKeyword);
+    });
+};
+
+console.log(getAll());
+
+console.log(search("user"));
+
+console.log(getAll());
