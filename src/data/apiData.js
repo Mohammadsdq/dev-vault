@@ -1,7 +1,7 @@
 export const apiData = [
     {
         id: crypto.randomUUID(),
-        name: "Users API",
+        name: "C Users API",
         baseUrl: "https://localhost:300/api/users",
         description: "User management",
         category: "Dev",
@@ -10,16 +10,16 @@ export const apiData = [
     },
     {
         id: crypto.randomUUID(),
-        name: "Products API",
+        name: "B Products API",
         baseUrl: "https://localhost:300/api/products",
         description: "Product management",
-        category: "Dev",
+        category: "Product",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
     },
     {
         id: crypto.randomUUID(),
-        name: "Kids API",
+        name: "A Kids API",
         baseUrl: "https://localhost:300/api/kids",
         description: "kid management",
         category: "Dev",

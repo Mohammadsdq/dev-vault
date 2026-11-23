@@ -71,8 +71,29 @@ export function search(keyword) {
     });
 };
 
-console.log(getAll());
+export function filterByCategory(keyword) {
+    if (typeof keyword !== "string" || !keyword.trim()) {
+        return [];
+    };
 
-console.log(search("user"));
+    const normalizedKeyword = keyword.toLowerCase().trim();
+    return apiData.filter(api => {
+        const normalizedCategory = api.category.toLowerCase().trim();
+        return normalizedCategory.includes(normalizedKeyword);
+    });
+}
 
-console.log(getAll());
+export function sortByName(order) {
+    const sortedData = [...apiData];
+    if (order == "asc") {
+        return sortedData.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        })
+    } else if (order == "desc") {
+        return sortedData.sort((a, b) => {
+            return b.name.localeCompare(a.name);
+        })
+    } else {
+        return [];
+    }
+}
