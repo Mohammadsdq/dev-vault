@@ -54,3 +54,58 @@ export function validateRequestConfig(config) {
 
     return true;
 }
+
+export async function sendRequest(config) {
+
+    // 1. Validate Request
+    const validateResult = validateRequestConfig(config);
+
+    if (!validateResult) {
+        throw new Error("Invalid Request Configuration!");
+    }
+
+    // 2. Destructure Config
+    const { method, url, headers, body } = config;
+
+    try {
+
+        // 3. Create Fetch Options
+        const options = {
+            method,
+            headers
+        };
+
+        // 4. Add Body if available
+        if (body !== null && body !== undefined) {
+            options.body = JSON.stringify(body);
+        }
+
+        // 5. Send HTTP Request
+        const response = await fetch(url, options);
+
+        // 6. Check Response Status
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        // 7. Return Raw Response
+        return response;
+
+    } catch (error) {
+        console.error(error.message);
+        throw error;
+    }
+}
+
+const config = createRequestConfig({
+    method: "PUT",
+    url: "https://jsonplaceholder.typicode.com/users",
+    headers: {}
+});
+
+try {
+    const response = await sendRequest(config);
+    console.log(response);
+} catch (error) {
+    console.error(error.message);
+}
