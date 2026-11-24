@@ -108,7 +108,7 @@ export async function parseResponse(response) {
             statusText,
             ok,
             data,
-            headers: Object.fromEntries(response.headers.entries())
+            headers: Object.fromEntries(headers.entries())
         };
         return responseResult;
     } catch (error) {
@@ -116,4 +116,31 @@ export async function parseResponse(response) {
     }
 }
 
-parseResponse({})
+export function handleRequestError(error) {
+    const { name, message } = error;
+
+    let errorResult;
+    if (name === "NETWORK_ERROR") {
+        errorResult = {
+            message: message,
+            type: name
+        }
+    } else if (name === "HTTP_ERROR") {
+        errorResult = {
+            message: message,
+            type: name
+        }
+    } else if (name === "PARSING_ERROR") {
+        errorResult = {
+            message: message,
+            type: name
+        }
+    } else {
+        errorResult = {
+            message: message,
+            type: "UNKNOWN_ERROR"
+        }
+    };
+
+    return errorResult;
+}
