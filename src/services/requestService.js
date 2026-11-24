@@ -94,18 +94,26 @@ export async function sendRequest(config) {
     } catch (error) {
         console.error(error.message);
         throw error;
+    };
+};
+
+export async function parseResponse(response) {
+    try {
+        const { status, statusText, ok, headers } = response
+        const data = response.status === 204
+            ? null
+            : await response.json();
+        const responseResult = {
+            status,
+            statusText,
+            ok,
+            data,
+            headers: Object.fromEntries(response.headers.entries())
+        };
+        return responseResult;
+    } catch (error) {
+        console.error(error.message);
     }
 }
 
-const config = createRequestConfig({
-    method: "PUT",
-    url: "https://jsonplaceholder.typicode.com/users",
-    headers: {}
-});
-
-try {
-    const response = await sendRequest(config);
-    console.log(response);
-} catch (error) {
-    console.error(error.message);
-}
+parseResponse({})
